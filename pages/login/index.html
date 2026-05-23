@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Night Technology | Login</title>
+    <link rel="stylesheet" href="../../share/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="loginpage.css" />
+    <style></style>
+</head>
+<body>
+    <div class="card login-card p-4 mx-0">
+        <div class="text-center">
+            <a href="../homepage/homepage.html">
+                <img src="../../assets/logo/logo.png" style="height: 60px" />
+            </a>
+            <h4 class="mt-1 fw-bold text-primary">Log in</h4>
+        </div>
+
+        <form id="loginForm">
+            <div class="mb-1">
+                <label for="email" class="form-label fw-medium">Email</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="fa-solid fa-envelope text-muted"></i></span>
+                    <input type="email" class="form-control" id="email" required />
+                </div>
+                <div class="text-danger" id="email-error"></div>
+            </div>
+            <div class="mb-1">
+                <label for="password" class="form-label fw-medium">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="fa-solid fa-lock text-muted"></i></span>
+                    <input type="password" class="form-control" id="password" required />
+                </div>
+                <div class="text-danger" id="password-error"></div>
+            </div>
+            <div class="text-danger mb-3" id="form-error"></div>
+            <button type="submit" class="btn btn-primary w-100 py-2 fw-bold" id="btnLogin">Log in</button>
+
+            <div class="text-center mt-4">
+                Don't have an account?
+                <a href="/pages/register/" class="" style="font-size: 0.9rem"> Register </a>
+            </div>
+        </form>
+    </div>
+
+</body>
+<script src="https://kit.fontawesome.com/c4edd7a73c.js" crossorigin="anonymous"></script>
+<script src="../../share/js/bootstrap.bundle.min.js"></script>
+<script src="../../share/js/user.js"></script>
+<script src="login.js"></script>
+</html>

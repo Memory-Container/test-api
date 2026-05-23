@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Night Technology | Homepage</title>
+        <link rel="stylesheet" href="homepage.css" />
+        <link rel="stylesheet" href="../../share/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="../../share/css/layout.css" />
+        <link rel="stylesheet" href="../../share/css/share.css" />
+    </head>
+    <body>
+        <header></header>
+        <main>
+            <section class="heroSection">
+                <div class="bgHero position-relative">
+                    <img src="https://uside-shop.vercel.app/assets/images/Bg-Hero_section-DVJWfQVx.jpg" alt="heroSection" class="picture" />
+                    <div class="bgOverlay position-absolute top-0"></div>
+                        <div class="container d-flex flex-column align-items-center position-absolute top-50 start-50 translate-middle heroBanner">
+                        <h3 class="titleHero text-center">A New Era Of Technology</h3>
+                        <div class="contentHero text-center">The lastest gadgets, keyboard, mouse, and more!</div>
+                        <button class="primary btn" id="CTA" onclick="window.location.href='/pages/product/'">See Our Products</button>
+                    </div>
+                </div>
+            </section>
+            <section class="section bestSeller">
+                <div class="container d-flex flex-column containerGap position-relative">
+                    <h3 class="title text-center">Our Best Selling Products</h3>
+                    <div class="carouselWrapper position-relative">
+                        <button class="btnArrow btnPrev position-absolute" id="btnPrevBestSeller"><i class="fa-solid fa-chevron-left"></i></button>
+                        <div class="wrapBestSeller d-flex" ></div>
+                        <button class="btnArrow btnNext position-absolute" id="btnNextBestSeller"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer></footer>
+    </body>
+<script src="https://kit.fontawesome.com/c4edd7a73c.js" crossorigin="anonymous"></script>
+<script src="../../share/js/product.js"></script>
+<script src="homepage.js"></script>
+<script src="../../share/js/bootstrap.bundle.min.js"></script>
+<script src="../../share/js/user.js"></script>
+<script src="../../share/js/layout.js"></script>
+</html>

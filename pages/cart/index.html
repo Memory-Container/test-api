@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Night Technology | Cart</title>
+    <link rel="stylesheet" href="../../share/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../share/css/share.css" />
+    <link rel="stylesheet" href="../../share/css/layout.css" />
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+    <header></header>
+    <main>
+        <section class="section container py-4">
+            <div class="table-responsive rounded-2 shadow-sm bg-white p-2">
+                <div class="justify-content-end gap-1 d-flex pb-2">
+                    <div class="justify-content-start d-flex gap-1" id="filter">
+                        <button class="btn btn-sm btn-dark">All</button>
+                        <button class="btn btn-sm btn-outline-dark">Mouse</button>
+                        <button class="btn btn-sm btn-outline-dark">Keyboard</button>
+                        <button class="btn btn-sm btn-outline-dark">Accessories</button>
+                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Clear Cart
+                        </button>
+                    </div>
+                    <div class="ms-auto" id="search">
+                        <input type="text" class="form-control form-control-sm" id="searchInput" placeholder="Search in cart..." />
+                    </div>
+                </div>
+                <table class="table table-bordered align-middle align-middle mb-0 px-2">
+                    <thead>
+                        <tr>
+                            <th class="col-3">Product Name</th>
+                            <th class="col-1">Type</th>
+                            <th class="col-1">Unit Price</th>
+                            <th class="col-1">Quantity</th>
+                            <th class="col-1">Total Price</th>
+                            <th class="text-center col-1">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="product-table col-12" id="cartTable">
+                        <td colspan="6" class="text-center py-4 text-muted">Your cart is empty</td>
+                    </tbody>
+                    <tfoot class="col-12">
+                        <td colspan="6" class="text-start" style="font-size: 1rem;">
+                            Total: <span class="text-danger fw-bold" id="totalCartPrice"></span>
+                        </td>
+                    </tfoot>
+                </table>
+            </div>
+        </section>
+    </main>
+    <div class="modal fade" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="overflow:hidden">
+        <div class="modal-dialog" role="document" style="z-index: 1050; height: 100%; display: flex; align-items: center; justify-content: center;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to clear your cart?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" id="clearCartBtn" data-bs-dismiss="modal" onclick="clearCart()">Clear Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://kit.fontawesome.com/c4edd7a73c.js" crossorigin="anonymous"></script>
+<script src="../../share/js/bootstrap.bundle.min.js"></script>
+<script src="../../share/js/layout.js"></script>
+<script src="cart.js"></script>
+</html>

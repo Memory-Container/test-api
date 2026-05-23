@@ -1,0 +1,189 @@
+:root {
+    --bg-footer: #09253c;
+    --cl-contentFooter: #f5f5f5f0;
+    --bg-header: #ffffff;
+    --bg-searchBar: #f7f9f4;
+    --color-text: #000000;
+}
+footer {
+    padding: 25px 0;
+    width: 100%;
+    background-color: var(--bg-footer);
+}
+.wrapFooter {
+    width: 100%;
+    gap: 40px;
+}
+.wrapFooter .blockFooter {
+    width: calc((100% - 40px * 2) / 3);
+    height: auto;
+    gap: 15px;
+}
+.blockFooter .titleFooter {
+    color: var(--cl-contentFooter);
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: var(--font-title);
+}
+.blockFooter .infor {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--cl-contentFooter);
+}
+.blockFooter .infor .nameMeaning {
+    font-size: 18px;
+    font-weight: 600;
+    color: #3eacff;
+}
+.navBarFooter {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+.navBarFooter .navItem {
+    position: relative;
+    list-style: none;
+}
+.navBarFooter .navLinkFooter {
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--cl-contentFooter);
+}
+.navBarFooter .navLinkFooter:hover {
+    color: var(--bg-primary);
+}
+.wrapInfor {
+    gap: 15px;
+}
+.blockFooter.changeWidthBlock {
+    max-width: 200px;
+    width: 100%;
+}
+@media screen and (max-width: 1000px) {
+    .wrapFooter {
+        flex-wrap: wrap;
+    }
+    .wrapFooter .blockFooter {
+        width: calc((100% - 40px) / 2);
+    }
+}
+@media screen and (max-width: 680px) {
+    .wrapFooter {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .wrapFooter .blockFooter {
+        width: 100%;
+        gap: 10px;
+    }
+}
+header {
+    width: 100%;
+    background-color: var(--bg-header);
+    box-shadow: 0 0 6px 0 rgb(0 0 0 / 0.2);
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    z-index: 9999;
+}
+.containerHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.boxHeader {
+    width: 100%;
+    display: flex;
+}
+.bgGreen {
+    padding: 8px 0;
+    background-color: var(--bg-header-infor);
+}
+.logo {
+    width: calc(256px / 5);
+}
+.logo img {
+    width: 100%;
+    height: 100%;
+}
+.navBar {
+    display: flex;
+    gap: 25px;
+    max-width: 300px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+.navBar .navItem {
+    list-style: none;
+    position: relative;
+    height: 30px;
+}
+.navBar .navLink:hover {
+    color: var(--bg-primary) !important;
+}
+.navBar .navItem .navLink {
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    padding: 18px 0;
+    color: var(--color-text);
+}
+.wrapTool {
+    gap: 20px;
+}
+.block {
+    gap: 8px;
+    font-size: 0.8rem;
+    color: var(--color-text);
+}
+.btnCart {
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.btnCart:hover {
+    color: #319cff;
+}
+.p-right {
+    border-right: 2px solid rgb(202, 200, 200);
+    padding-right: 10px;
+}
+.btnLogin {
+    padding: 6px 12px;
+    border: 0;
+    font-size: 0.9rem;
+}
+.fa-cart-shopping {
+    cursor: pointer;
+}
+.btnCart span {
+    display: flex;
+}
+@media screen and (max-width: 1000px) {
+    .navBar {
+        align-items: flex-start;
+    }
+}
+@media screen and (max-width: 500px) {
+    .btnCart span {
+        display: none;
+    }
+}
+.cardProduct {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+.cardProduct:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.566);
+}

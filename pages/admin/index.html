@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Night Technology | Admin</title>
+    <link rel="stylesheet" href="../../share/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../share/css/layout.css" />
+    <link rel="stylesheet" href="../../share/css/share.css" />
+    <link rel="stylesheet" href="admin.css" />
+</head>
+<body class="bg-light">
+    <header></header>
+    <main>
+        <section class="section container py-4">
+            <div class="table-responsive rounded-2 shadow-sm bg-white p-2">
+                <div class="justify-content-end gap-1 d-flex pb-2">
+                    <div class="justify-content-start d-flex gap-1" id="filter">
+                        <button class="btn btn-sm btn-dark">All</button>
+                        <button class="btn btn-sm btn-outline-dark">Mouse</button>
+                        <button class="btn btn-sm btn-outline-dark">Keyboard</button>
+                        <button class="btn btn-sm btn-outline-dark">Accessories</button>
+                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Create Product
+                        </button>
+                    </div>
+                    <div class="ms-auto" id="search">
+                        <input type="text" class="form-control form-control-sm" id="searchInput" placeholder="Search in cart..." />
+                    </div>
+                </div>
+                <table class="table table-bordered align-middle align-middle mb-0 px-2">
+                    <thead>
+                        <tr>
+                            <th class="text-center col-1">Image</th>
+                            <th class="col-2">Product Name</th>
+                            <th class="col-2">ID</th>
+                            <th class="col-1">Type</th>
+                            <th class="col-1">Price</th>
+                            <th class="col-3">Description</th>
+                            <th class="text-center col-1">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="product-table col-12" id="cartTable">
+                        <td colspan="7" class="text-center py-4 text-muted">Your cart is empty</td>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <div class="modal fade" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="overflow:hidden">
+        <div class="modal-dialog container" role="document" style="z-index: 1050; height: 100%; display: flex; align-items: center; justify-content: center;">
+                <div class="modal-content">
+                    <div class="modal-header text-black">
+                        <h5 class="modal-titlefw-bold" id="productModalLabel">Product Information</h5>
+                        <button type="button" class="btn-close btn-close-black" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="productForm">
+                        <div class="modal-body">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="fileImg" class="form-label">Image URL</label>
+                                    <input type="file" class="form-control" id="fileImg" required accept="image/*">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="productName" class="form-label">Product Name</label>
+                                    <input type="text" class="form-control" id="productName" placeholder="Product name..." required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="productPrice" class="form-label">Price ($)</label>
+                                    <input type="number" class="form-control" id="productPrice" placeholder="10" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="productCategory" class="form-label">Product Type</label>
+                                    <select class="form-select" id="productCategory" required>
+                                        <option value="Keyboard">Keyboard</option>
+                                        <option value="Mouse">Mouse</option>
+                                        <option value="Accessory">Accessory</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="productDesc" class="form-label">Product Description</label>
+                                    <textarea class="form-control" id="productDesc" rows="3" placeholder="Detailed description of the product..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="btnSaveProduct" onclick="addProduct()">Add Product</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://kit.fontawesome.com/c4edd7a73c.js" crossorigin="anonymous"></script>
+<script src="../../share/js/bootstrap.bundle.min.js"></script>
+<script src="../../share/js/layout.js"></script>
+<script src="../../share/js/user.js"></script>
+<script src="../../share/js/product.js"></script>
+<script src="admin.js"></script>
+</html>
