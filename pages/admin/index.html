@@ -14,7 +14,7 @@
     <main>
         <section class="section container py-4">
             <div class="table-responsive rounded-2 shadow-sm bg-white p-2">
-                <div class="justify-content-end gap-1 d-flex pb-2">
+                <div class="justify-content-between gap-1 d-flex pb-2 flex-wrap">
                     <div class="justify-content-start d-flex gap-1" id="filter">
                         <button class="btn btn-sm btn-dark">All</button>
                         <button class="btn btn-sm btn-outline-dark">Mouse</button>
@@ -24,7 +24,7 @@
                             Create Product
                         </button>
                     </div>
-                    <div class="ms-auto" id="search">
+                    <div id="search">
                         <input type="text" class="form-control form-control-sm" id="searchInput" placeholder="Search in cart..." />
                     </div>
                 </div>
@@ -59,35 +59,53 @@
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label for="fileImg" class="form-label">Image URL</label>
-                                    <input type="file" class="form-control" id="fileImg" required accept="image/*">
+                                    <input name="fileImage" type="file" class="form-control" id="fileImage" required accept="image/*">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="productName" class="form-label">Product Name</label>
-                                    <input type="text" class="form-control" id="productName" placeholder="Product name..." required>
+                                    <input name="productName" type="text" class="form-control" id="productName" placeholder="Product name..." required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="productPrice" class="form-label">Price ($)</label>
-                                    <input type="number" class="form-control" id="productPrice" placeholder="10" required>
+                                    <input name="productPrice" type="number" class="form-control" id="productPrice" value="10" max="10000" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="productCategory" class="form-label">Product Type</label>
-                                    <select class="form-select" id="productCategory" required>
+                                    <select name="productType" class="form-select" id="productCategory" required>
                                         <option value="Keyboard">Keyboard</option>
                                         <option value="Mouse">Mouse</option>
-                                        <option value="Accessory">Accessory</option>
+                                        <option value="Accessories">Accessories</option>
                                     </select>
                                 </div>
                                 <div class="col-12">
                                     <label for="productDesc" class="form-label">Product Description</label>
-                                    <textarea class="form-control" id="productDesc" rows="3" placeholder="Detailed description of the product..."></textarea>
+                                    <textarea class="form-control" name="productDescription" id="productDesc" rows="3" placeholder="Detailed description of the product..."></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" id="btnSaveProduct" onclick="addProduct()">Add Product</button>
+                            <button type="submit" class="btn btn-primary" id="btnSaveProduct">Add Product</button>
                         </div>
                 </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="confirmDeleteModal" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true" style="overflow:hidden">
+        <div class="modal-dialog" role="document" style="z-index: 1050; height: 100%; display: flex; align-items: center; justify-content: center;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Delete</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this product?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" id="deleteProductBtn" data-bs-dismiss="modal" onclick="removeProduct()">Delete Product</button>
+                </div>
             </div>
         </div>
     </div>

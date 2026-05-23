@@ -31,7 +31,7 @@ footer.innerHTML = `
 `;
 const header = document.getElementsByTagName("header")[0] ?? [];
 header.innerHTML = `
-    <nav class="navbar navbar-expand-lg boxHeader bg-white shadow-sm py-0">
+    <nav class="navbar navbar-expand-lg boxHeader bg-white shadow-sm py-2">
         <div class="container flex-wrap align-items-center justify-content-between">
             
             <a class="navbar-brand logo m-0" href="/pages/homepage/" style="max-width: 50px; display: flex; align-items: center; gap: 10px; ; text-wrap: auto">
@@ -72,7 +72,7 @@ function setHeaderUser() {
             <div id="user-menu" class="dropdown">
                 <button class="btn btn-sm dropdown-toggle border-0 d-flex align-items-center gap-2" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fa-solid fa-user"></i>
-                    <span id="display-username">${JSON.parse(user).name}</span>
+                    <span id="display-username">${JSON.parse(user).username}</span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end shadow-sm py-0" aria-labelledby="userDropdown">
                     <li><a class="dropdown-item py-2" style="font-size:14px" href="#">User Information</a></li>

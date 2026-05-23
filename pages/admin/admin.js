@@ -1,30 +1,36 @@
-const fileImg = document.querySelector("#fileImg");
-fileImg.addEventListener("change", encodeImageFileAsURL);
 let productList = {
-    allProduct: [],
-    product: [],
-}
-function encodeImageFileAsURL(element = document.querySelector("#import-product-image")) {
-    var file = element.files[0];
-    var reader = new FileReader();
-    reader.onloadend = function () {
-        console.log(reader.result);
-        return reader.result;
-    };
-    reader.readAsDataURL(file);
-}
-let listProductState = {
     allProduct: [],
     product: [],
     searchTerm: "",
     filterType: "All",
 }
-listProductState.allProduct =  localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []
-listProductState.product = listProductState.allProduct;
+let productIDToDelete = null;
+let fileImage = document.querySelector("#fileImage");
+let currentFileData = null;
+function encodeImageFileAsURL(file) {
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = function () {
+        return reader.result;
+    };
+}
+productList.allProduct =  localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []
+productList.product = productList.allProduct;
+fileImage.addEventListener('change', (event) => {
+  const file = event.target.files[0];
+  const reader = new FileReader();
+
+  reader.onloadend = () => {
+    currentFileData = reader.result;
+  };
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+});
 function renderProductTable(products) {
     const tableBody = document.querySelector("#cartTable");
     if (!products || products.length === 0) {
-        tableBody.innerHTML = "<tr><td colspan='7' class='text-center'>Your cart is empty</td></tr>";
+        tableBody.innerHTML = "<tr><td colspan='7' class='text-center'>No products available</td></tr>";
         return;
     }
     tableBody.innerHTML = "";
@@ -48,12 +54,15 @@ function renderProductRow(products) {
             <button class="btn btn-sm align-self-center" data-id="${products?.id}">
                 <i class="fa-solid fa-pen-to-square"></i>
             </button>
-            <button class="btn btn-sm btn-danger removeItemBtn align-self-center" data-id="${products?.id}">
+            <button class="btn btn-sm btn-danger removeItemBtn align-self-center" onclick="setProductIDToDelete('${products?.id}')" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
                 <i class="fa-solid fa-trash"></i>
             </button>
         </td>
     `;
     tableBody.appendChild(row);
+}
+function setProductIDToDelete(id) {
+    productIDToDelete = id;
 }
 function initializeFilter() {
     let filter = document.querySelector("#filter").querySelectorAll(".btn")
@@ -65,20 +74,21 @@ function initializeFilter() {
                 if (element2.className.includes("btn-primary")) {return;}
                 element2.className = "btn btn-sm btn-outline-dark"
             });
+            productList.filterType = element.textContent;
             element.className = "btn btn-sm btn-dark"
             filterProducts();
-            renderProductTable(listProductState.product);
+            renderProductTable(productList.product);
         })
     })
     searchInput.addEventListener("input", () => {
+        productList.searchTerm = searchInput.value.toLowerCase();
         filterProducts();
-        renderProductTable(listProductState.product);
+        renderProductTable(productList.product);
     })
 }
 function filterProducts() {
-    listProductState.searchTerm = searchInput.value.toLowerCase();
-    listProductState.product = listProductState.allProduct.filter(product => 
-            (product.type === listProductState.filterType || listProductState.filterType === "All") && product.name.toLowerCase().includes(listProductState.searchTerm)
+    productList.product = productList.allProduct.filter(product => 
+            (product.type === productList.filterType || productList.filterType === "All") && product.name.toLowerCase().includes(productList.searchTerm)
     );
 }
 function addProduct(product) {
@@ -86,11 +96,11 @@ function addProduct(product) {
         alert("Please fill in all fields correctly.");
         return;
     }
-    listProductState.allProduct.push(product);
-    listProductState.product = listProductState.allProduct;
+    productList.allProduct.push(product);
+    productList.product = productList.allProduct;
     filterProducts();
     createProduct(product);
-    renderProductTable(listProductState.product);
+    renderProductTable(productList.product);
 }
 function validateProduct(product) {
     return !product?.imageURL 
@@ -109,14 +119,8 @@ function validateProductType(type) {
     const validTypes = ["Keyboard", "Mouse", "Accessory"];
     return !validTypes.includes(type);
 }
-function removeProduct(productId) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    cart = cart.filter((item) => item.id !== productId);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    listProductState.allProduct = cart;
-    listProductState.product = cart;
-    filterProducts();
-    renderProductTable(listProductState.product);
+function validateProductDescription(description) {
+    return description?.trim() === "" || description?.length > 500;
 }
 window.addEventListener("pageshow", () => {
     let userType = JSON.parse(localStorage.getItem("activeUser")).type;
@@ -137,13 +141,25 @@ productForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const formData = new FormData(productForm);
     const newProduct = {
-        id: Date.now().toString(),
-        name: formData.get("name"),
-        price: parseFloat(formData.get("price")),
-        type: formData.get("type"),
-        description: formData.get("description"),
-        imageURL: encodeImageFileAsURL(document.querySelector("#import-product-image")),
+        name: formData.get("productName"),
+        price: parseFloat(formData.get("productPrice")),
+        description: formData.get("productDescription"),
+        type: formData.get("productType"),
+        imageURL: currentFileData
     };
     console.log(newProduct);
+    addProduct(newProduct);
+    alert("Product added successfully!");
     productForm.reset();
 });
+
+function removeProduct() {
+    if (productIDToDelete) {
+        deleteProduct(productIDToDelete);
+        productList.allProduct = productList.allProduct.filter(product => product.id !== productIDToDelete);
+        productList.product = productList.allProduct;
+        filterProducts();
+        renderProductTable(productList.product);
+        productIDToDelete = null;
+    }
+}

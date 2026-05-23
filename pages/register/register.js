@@ -5,7 +5,7 @@ let usernameInput = document.querySelector("#username")
 let usernameError = document.querySelector("#username-error")
 let formError = document.querySelector("#form-error")
 let passwordInput = document.querySelector("#password")
-let form = document.querySelector(".login-form")
+let form = document.querySelector("#signForm")
 let errorText = document.querySelector(".error")
 emailInput.addEventListener("blur", () => {
     updateError("#email-error", checkGmailError(emailInput.value))
@@ -26,6 +26,7 @@ form.addEventListener("submit", async (e) => {
             type: "user"
         }
         createUser(newUser)
+        localStorage.setItem("activeUser", JSON.stringify(newUser))
         location.replace("/pages/homepage")
     }
 })

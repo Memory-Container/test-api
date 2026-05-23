@@ -7,7 +7,6 @@ async function getProductsList() {
         }
         response = await response.json()
         return response;
-        
     }
     catch(e) {
         console.error(e)

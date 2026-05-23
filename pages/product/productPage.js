@@ -16,8 +16,8 @@ function renderCardGrid(cardList) {
         `;
         return;
     }
-    for (Element of cardList) {
-        renderCard(Element);
+    for (element of cardList) {
+        renderCard(element);
     }
     const viewDetailBtns = listProduct.querySelectorAll(".viewDetail");
     viewDetailBtns.forEach((btn) => {
@@ -88,17 +88,18 @@ function initializeFilter() {
                 element2.className = "btn btn-sm btn-outline-dark"
             });
             element.className = "btn btn-sm btn-dark"
+            listProductState.filterType = element.textContent;
             filterProducts();
             renderCardGrid(listProductState.product);
         })
     })
     searchInput.addEventListener("input", () => {
+        listProductState.searchTerm = searchInput.value.toLowerCase();
         filterProducts();
         renderCardGrid(listProductState.product);
     })
 }
 function filterProducts() {
-    listProductState.searchTerm = searchInput.value.toLowerCase();
     listProductState.product = listProductState.allProduct.filter(product => 
             (product.type === listProductState.filterType || listProductState.filterType === "All") && product.name.toLowerCase().includes(listProductState.searchTerm)
     );
